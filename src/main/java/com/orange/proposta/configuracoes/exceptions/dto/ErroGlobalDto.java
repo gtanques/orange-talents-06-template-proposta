@@ -2,7 +2,7 @@ package com.orange.proposta.configuracoes.exceptions.dto;
 
 public class ErroGlobalDto {
 
-    private String erro;
+    private final String erro;
 
     public ErroGlobalDto(String erro) {
         this.erro = erro;

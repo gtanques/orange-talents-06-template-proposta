@@ -43,20 +43,8 @@ public class NovaPropostaRequest {
         this.salario = salario;
     }
 
-
     public Proposta toModel() {
         return new Proposta(this.cpfCnpj, this.email, this.nome, this.endereco, this.salario);
-    }
-
-    @Override
-    public String toString() {
-        return "NovaPropostaRequest{" +
-                "cpfCnpj='" + cpfCnpj + '\'' +
-                ", email='" + email + '\'' +
-                ", nome='" + nome + '\'' +
-                ", endereço='" + endereco + '\'' +
-                ", salario=" + salario +
-                '}';
     }
 
 }

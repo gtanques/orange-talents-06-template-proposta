@@ -9,13 +9,13 @@ public class ErroDeFormularioDto {
         return campo;
     }
 
-    public String getErro() {
-        return erro;
-    }
-
     public ErroDeFormularioDto(String campo, String erro) {
         this.campo = campo;
         this.erro = erro;
+    }
+
+    public String getErro() {
+        return erro;
     }
 
 }
