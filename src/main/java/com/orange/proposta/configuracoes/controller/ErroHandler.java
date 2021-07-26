@@ -1,7 +1,7 @@
 package com.orange.proposta.configuracoes.controller;
 
-import com.orange.proposta.configuracoes.exceptions.dto.ErroDeFormularioDto;
-import com.orange.proposta.configuracoes.exceptions.dto.ErroGlobalDto;
+import com.orange.proposta.configuracoes.exceptions.dto.ErroResponse;
+import com.orange.proposta.configuracoes.exceptions.dto.ErroGlobalResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -34,14 +34,14 @@ public class ErroHandler {
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         fieldErrors.forEach(e -> {
             String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-            ErroDeFormularioDto erro = new ErroDeFormularioDto(e.getField(), mensagem);
+            ErroResponse erro = new ErroResponse(e.getField(), mensagem);
             dto.add(erro);
         });
 
         List<ObjectError> errors = exception.getBindingResult().getGlobalErrors();
         errors.forEach(e -> {
             String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-            ErroGlobalDto error = new ErroGlobalDto(mensagem);
+            ErroGlobalResponse error = new ErroGlobalResponse(mensagem);
             dto.add(error);
         });
 

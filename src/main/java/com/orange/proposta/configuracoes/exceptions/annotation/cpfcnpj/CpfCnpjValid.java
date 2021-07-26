@@ -1,4 +1,4 @@
-package com.orange.proposta.configuracoes.exceptions.annotation;
+package com.orange.proposta.configuracoes.exceptions.annotation.cpfcnpj;
 
 import org.hibernate.validator.constraints.CompositionType;
 import org.hibernate.validator.constraints.ConstraintComposition;

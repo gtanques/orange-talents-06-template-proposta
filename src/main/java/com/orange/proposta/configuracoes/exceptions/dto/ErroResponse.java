@@ -1,6 +1,6 @@
 package com.orange.proposta.configuracoes.exceptions.dto;
 
-public class ErroDeFormularioDto {
+public class ErroResponse {
 
     private final String campo;
     private final String erro;
@@ -9,7 +9,7 @@ public class ErroDeFormularioDto {
         return campo;
     }
 
-    public ErroDeFormularioDto(String campo, String erro) {
+    public ErroResponse(String campo, String erro) {
         this.campo = campo;
         this.erro = erro;
     }

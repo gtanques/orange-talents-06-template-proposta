@@ -1,10 +1,10 @@
 package com.orange.proposta.configuracoes.exceptions.dto;
 
-public class ErroGlobalDto {
+public class ErroGlobalResponse {
 
     private final String erro;
 
-    public ErroGlobalDto(String erro) {
+    public ErroGlobalResponse(String erro) {
         this.erro = erro;
     }
 
