@@ -2,6 +2,7 @@ package com.orange.proposta.novaproposta.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.orange.proposta.configuracoes.exceptions.annotation.cpfcnpj.CpfCnpjValid;
+import com.orange.proposta.configuracoes.exceptions.annotation.cpfcnpj.PossuiPropostaValid;
 import com.orange.proposta.novaproposta.Proposta;
 
 import javax.validation.constraints.Email;
@@ -15,6 +16,7 @@ public class NovaPropostaRequest {
     @NotNull
     @NotBlank
     @CpfCnpjValid
+    @PossuiPropostaValid
     private String cpfCnpj;
 
     @Email
