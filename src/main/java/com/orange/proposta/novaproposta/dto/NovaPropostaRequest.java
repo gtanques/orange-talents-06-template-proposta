@@ -1,22 +1,24 @@
 package com.orange.proposta.novaproposta.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.orange.proposta.configuracoes.exceptions.ExceptionPersonalizada;
 import com.orange.proposta.configuracoes.exceptions.annotation.cpfcnpj.CpfCnpjValid;
-import com.orange.proposta.configuracoes.exceptions.annotation.cpfcnpj.PossuiPropostaValid;
 import com.orange.proposta.novaproposta.Proposta;
+import com.orange.proposta.novaproposta.repository.PropostaRepository;
+import org.springframework.http.HttpStatus;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public class NovaPropostaRequest {
 
     @NotNull
     @NotBlank
     @CpfCnpjValid
-    @PossuiPropostaValid
     private String cpfCnpj;
 
     @Email
@@ -45,8 +47,16 @@ public class NovaPropostaRequest {
         this.salario = salario;
     }
 
-    public Proposta toModel() {
+    public Proposta toModel(PropostaRepository propostaRepository) {
+
+        Optional<Proposta> existeProposta = propostaRepository.findByCpfCnpj(this.cpfCnpj);
+
+        if (existeProposta.isPresent()) {
+            throw new ExceptionPersonalizada("Já existe uma proposta cadastrada para esse CPF/CNPJ.", HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+
         return new Proposta(this.cpfCnpj, this.email, this.nome, this.endereco, this.salario);
+
     }
 
 }

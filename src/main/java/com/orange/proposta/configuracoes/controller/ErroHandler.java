@@ -1,11 +1,13 @@
 package com.orange.proposta.configuracoes.controller;
 
-import com.orange.proposta.configuracoes.exceptions.dto.ErroResponse;
+import com.orange.proposta.configuracoes.exceptions.ExceptionPersonalizada;
 import com.orange.proposta.configuracoes.exceptions.dto.ErroGlobalResponse;
+import com.orange.proposta.configuracoes.exceptions.dto.ErroResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -46,6 +48,12 @@ public class ErroHandler {
         });
 
         return dto;
+    }
+
+    @ExceptionHandler(ExceptionPersonalizada.class)
+    public ResponseEntity<?> handlerPersonalizado(ExceptionPersonalizada e) {
+        ErroGlobalResponse erroResponse = new ErroGlobalResponse(e.getMessage());
+        return ResponseEntity.status(e.getHttpStatus()).body(erroResponse);
     }
 
 }
