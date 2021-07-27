@@ -1,6 +1,7 @@
 package com.orange.proposta.novaproposta.dto;
 
 import com.orange.proposta.novaproposta.Proposta;
+import com.orange.proposta.novaproposta.enumerador.StatusFinanceiro;
 
 import java.math.BigDecimal;
 
@@ -8,15 +9,17 @@ public class NovaPropostaResponse {
     private final String cpfCnpj;
     private final String email;
     private final String nome;
-    private final String endereço;
+    private final String endereco;
     private final BigDecimal salario;
+    private final StatusFinanceiro statusFinanceiro;
 
     public NovaPropostaResponse(Proposta proposta) {
         this.cpfCnpj = proposta.getCpfCnpj();
         this.email = proposta.getEmail();
         this.nome = proposta.getNome();
-        this.endereço = proposta.getEndereço();
+        this.endereco = proposta.getEndereco();
         this.salario = proposta.getSalario();
+        this.statusFinanceiro = proposta.getStatusFinanceiro();
     }
 
     public String getCpfCnpj() {
@@ -31,12 +34,14 @@ public class NovaPropostaResponse {
         return nome;
     }
 
-    public String getEndereço() {
-        return endereço;
+    public String getEndereco() {
+        return endereco;
     }
 
     public BigDecimal getSalario() {
         return salario;
     }
 
+    public StatusFinanceiro getStatusFinanceiro() { return statusFinanceiro; }
+    
 }

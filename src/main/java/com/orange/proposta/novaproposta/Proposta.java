@@ -1,5 +1,7 @@
 package com.orange.proposta.novaproposta;
 
+import com.orange.proposta.novaproposta.enumerador.StatusFinanceiro;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -30,6 +32,8 @@ public class Proposta {
     @Column(nullable = false)
     private BigDecimal salario;
 
+    @Enumerated(EnumType.STRING)
+    private StatusFinanceiro statusFinanceiro;
 
     @Deprecated
     private Proposta() {
@@ -49,24 +53,24 @@ public class Proposta {
 
     public Long getId() { return id; }
 
-    public String getCpfCnpj() {
-        return cpfCnpj;
-    }
+    public String getCpfCnpj() { return cpfCnpj; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email; }
 
-    public String getNome() {
-        return nome;
-    }
+    public String getNome() { return nome; }
 
-    public String getEndereço() {
-        return endereço;
-    }
+    public String getEndereco() { return endereço; }
 
-    public BigDecimal getSalario() {
-        return salario;
+    public BigDecimal getSalario() { return salario; }
+
+    public StatusFinanceiro getStatusFinanceiro() { return statusFinanceiro; }
+
+    public void definirStatus(String status){
+        if(status.equals("COM_RESTRICAO")){
+            this.statusFinanceiro = StatusFinanceiro.NAO_ELEGIVEL;
+        }else{
+            this.statusFinanceiro = StatusFinanceiro.ELEGIVEL;
+        }
     }
 
 }
