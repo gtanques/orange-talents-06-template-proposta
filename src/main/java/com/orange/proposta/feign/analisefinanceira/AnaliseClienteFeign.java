@@ -1,7 +1,7 @@
-package com.orange.proposta.analises;
+package com.orange.proposta.feign.analisefinanceira;
 
-import com.orange.proposta.analises.dto.SolicitarAnaliseRequest;
-import com.orange.proposta.analises.dto.SolicitarAnaliseResponse;
+import com.orange.proposta.feign.analisefinanceira.dto.SolicitarAnaliseRequest;
+import com.orange.proposta.feign.analisefinanceira.dto.SolicitarAnaliseResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

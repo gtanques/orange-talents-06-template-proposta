@@ -1,4 +1,4 @@
-package com.orange.proposta.analises.dto;
+package com.orange.proposta.feign.analisefinanceira.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

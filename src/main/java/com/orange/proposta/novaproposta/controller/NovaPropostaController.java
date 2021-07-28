@@ -1,8 +1,8 @@
 package com.orange.proposta.novaproposta.controller;
 
-import com.orange.proposta.analises.AnaliseClienteFeign;
-import com.orange.proposta.analises.dto.SolicitarAnaliseRequest;
-import com.orange.proposta.analises.dto.SolicitarAnaliseResponse;
+import com.orange.proposta.feign.analisefinanceira.AnaliseClienteFeign;
+import com.orange.proposta.feign.analisefinanceira.dto.SolicitarAnaliseRequest;
+import com.orange.proposta.feign.analisefinanceira.dto.SolicitarAnaliseResponse;
 import com.orange.proposta.configuracoes.exceptions.ExceptionPersonalizada;
 import com.orange.proposta.novaproposta.Proposta;
 import com.orange.proposta.novaproposta.dto.NovaPropostaRequest;
@@ -45,9 +45,9 @@ public class NovaPropostaController {
         try {
             SolicitarAnaliseRequest analiseRequest = new SolicitarAnaliseRequest(proposta);
             SolicitarAnaliseResponse response = analiseClienteFeign.analiseFinanceira(analiseRequest);
-            proposta.definirStatus(response.getResultadoSolicitacao());
+            proposta.definirStatusFinanceiro(response.getResultadoSolicitacao());
         } catch (FeignException.UnprocessableEntity e) {
-            proposta.definirStatus("COM_RESTRICAO");
+            proposta.definirStatusFinanceiro("COM_RESTRICAO");
         }catch (FeignException e){
             throw new ExceptionPersonalizada("Serviço de análise indisponível", HttpStatus.SERVICE_UNAVAILABLE);
         }

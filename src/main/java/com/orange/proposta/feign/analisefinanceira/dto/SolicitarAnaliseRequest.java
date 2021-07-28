@@ -1,4 +1,4 @@
-package com.orange.proposta.analises.dto;
+package com.orange.proposta.feign.analisefinanceira.dto;
 
 import com.orange.proposta.configuracoes.exceptions.annotation.cpfcnpj.CpfCnpjValid;
 import com.orange.proposta.novaproposta.Proposta;

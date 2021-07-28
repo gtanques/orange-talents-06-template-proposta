@@ -27,13 +27,15 @@ public class Proposta {
     private String nome;
 
     @Column(nullable = false)
-    private String endereço;
+    private String endereco;
 
     @Column(nullable = false)
     private BigDecimal salario;
 
     @Enumerated(EnumType.STRING)
     private StatusFinanceiro statusFinanceiro;
+
+    private String numeroCartao;
 
     @Deprecated
     private Proposta() {
@@ -42,12 +44,12 @@ public class Proposta {
     public Proposta(@NotNull @NotBlank String cpfCnpj,
                     @Email @NotNull @NotBlank String email,
                     @NotNull @NotBlank String nome,
-                    @NotNull @NotBlank String endereço,
+                    @NotNull @NotBlank String endereco,
                     @NotNull @PositiveOrZero BigDecimal salario) {
         this.cpfCnpj = cpfCnpj;
         this.email = email;
         this.nome = nome;
-        this.endereço = endereço;
+        this.endereco = endereco;
         this.salario = salario;
     }
 
@@ -59,18 +61,24 @@ public class Proposta {
 
     public String getNome() { return nome; }
 
-    public String getEndereco() { return endereço; }
+    public String getEndereco() { return endereco; }
 
     public BigDecimal getSalario() { return salario; }
 
     public StatusFinanceiro getStatusFinanceiro() { return statusFinanceiro; }
 
-    public void definirStatus(String status){
+    public String getNumeroCartao() { return numeroCartao; }
+
+    public void definirStatusFinanceiro(String status){
         if(status.equals("COM_RESTRICAO")){
             this.statusFinanceiro = StatusFinanceiro.NAO_ELEGIVEL;
         }else{
             this.statusFinanceiro = StatusFinanceiro.ELEGIVEL;
         }
+    }
+
+    public void definirNumeroCartao(String numeroCartao){
+        this.numeroCartao = numeroCartao;
     }
 
 }
