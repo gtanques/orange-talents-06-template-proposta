@@ -45,9 +45,9 @@ public class NovaPropostaController {
         try {
             SolicitarAnaliseRequest analiseRequest = new SolicitarAnaliseRequest(proposta);
             SolicitarAnaliseResponse response = analiseClienteFeign.analiseFinanceira(analiseRequest);
-            proposta.definirStatusFinanceiro(response.getResultadoSolicitacao());
+            proposta.AdicionaStatusFinanceiroNaProposta(response.getResultadoSolicitacao());
         } catch (FeignException.UnprocessableEntity e) {
-            proposta.definirStatusFinanceiro("COM_RESTRICAO");
+            proposta.AdicionaStatusFinanceiroNaProposta("COM_RESTRICAO");
         }catch (FeignException e){
             throw new ExceptionPersonalizada("Serviço de análise indisponível", HttpStatus.SERVICE_UNAVAILABLE);
         }

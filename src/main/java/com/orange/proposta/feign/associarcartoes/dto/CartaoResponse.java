@@ -4,11 +4,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 public class CartaoResponse {
 
-    private final String id;
+    private String id;
 
-    @JsonCreator
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public CartaoResponse(String id) {
         this.id = id;
+    }
+
+    @Deprecated
+    private CartaoResponse() {
     }
 
     public String getNumeroCartao() {

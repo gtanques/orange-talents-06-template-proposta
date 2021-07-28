@@ -67,9 +67,7 @@ public class Proposta {
 
     public StatusFinanceiro getStatusFinanceiro() { return statusFinanceiro; }
 
-    public String getNumeroCartao() { return numeroCartao; }
-
-    public void definirStatusFinanceiro(String status){
+    public void AdicionaStatusFinanceiroNaProposta(String status){
         if(status.equals("COM_RESTRICAO")){
             this.statusFinanceiro = StatusFinanceiro.NAO_ELEGIVEL;
         }else{
@@ -77,7 +75,7 @@ public class Proposta {
         }
     }
 
-    public void definirNumeroCartao(String numeroCartao){
+    public void adicionaCartaoNaProposta(String numeroCartao){
         this.numeroCartao = numeroCartao;
     }
 
