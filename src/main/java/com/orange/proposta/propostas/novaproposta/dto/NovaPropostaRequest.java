@@ -1,10 +1,10 @@
-package com.orange.proposta.novaproposta.dto;
+package com.orange.proposta.propostas.novaproposta.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.orange.proposta.configuracoes.exceptions.ExceptionPersonalizada;
 import com.orange.proposta.configuracoes.exceptions.annotation.cpfcnpj.CpfCnpjValid;
-import com.orange.proposta.novaproposta.Proposta;
-import com.orange.proposta.novaproposta.repository.PropostaRepository;
+import com.orange.proposta.propostas.novaproposta.Proposta;
+import com.orange.proposta.propostas.novaproposta.repository.PropostaRepository;
 import org.springframework.http.HttpStatus;
 
 import javax.validation.constraints.Email;
@@ -48,7 +48,6 @@ public class NovaPropostaRequest {
     }
 
     public Proposta toModel(PropostaRepository propostaRepository) {
-
         Optional<Proposta> existeProposta = propostaRepository.findByCpfCnpj(this.cpfCnpj);
 
         if (existeProposta.isPresent()) {
@@ -56,7 +55,6 @@ public class NovaPropostaRequest {
         }
 
         return new Proposta(this.cpfCnpj, this.email, this.nome, this.endereco, this.salario);
-
     }
 
 }

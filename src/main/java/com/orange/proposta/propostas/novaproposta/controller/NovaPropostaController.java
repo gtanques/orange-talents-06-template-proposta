@@ -1,13 +1,13 @@
-package com.orange.proposta.novaproposta.controller;
+package com.orange.proposta.propostas.novaproposta.controller;
 
 import com.orange.proposta.feign.analisefinanceira.AnaliseClienteFeign;
 import com.orange.proposta.feign.analisefinanceira.dto.SolicitarAnaliseRequest;
 import com.orange.proposta.feign.analisefinanceira.dto.SolicitarAnaliseResponse;
 import com.orange.proposta.configuracoes.exceptions.ExceptionPersonalizada;
-import com.orange.proposta.novaproposta.Proposta;
-import com.orange.proposta.novaproposta.dto.NovaPropostaRequest;
-import com.orange.proposta.novaproposta.dto.NovaPropostaResponse;
-import com.orange.proposta.novaproposta.repository.PropostaRepository;
+import com.orange.proposta.propostas.novaproposta.Proposta;
+import com.orange.proposta.propostas.novaproposta.dto.NovaPropostaRequest;
+import com.orange.proposta.propostas.novaproposta.dto.NovaPropostaResponse;
+import com.orange.proposta.propostas.novaproposta.repository.PropostaRepository;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

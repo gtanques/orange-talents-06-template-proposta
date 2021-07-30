@@ -1,7 +1,7 @@
-package com.orange.proposta.novaproposta.dto;
+package com.orange.proposta.propostas.novaproposta.dto;
 
-import com.orange.proposta.novaproposta.Proposta;
-import com.orange.proposta.novaproposta.enumerador.StatusFinanceiro;
+import com.orange.proposta.propostas.novaproposta.Proposta;
+import com.orange.proposta.propostas.novaproposta.enumerador.StatusFinanceiro;
 
 import java.math.BigDecimal;
 

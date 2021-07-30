@@ -1,6 +1,6 @@
-package com.orange.proposta.novaproposta;
+package com.orange.proposta.propostas.novaproposta;
 
-import com.orange.proposta.novaproposta.enumerador.StatusFinanceiro;
+import com.orange.proposta.propostas.novaproposta.enumerador.StatusFinanceiro;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

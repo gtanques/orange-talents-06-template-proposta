@@ -1,7 +1,7 @@
-package com.orange.proposta.novaproposta.repository;
+package com.orange.proposta.propostas.novaproposta.repository;
 
-import com.orange.proposta.novaproposta.Proposta;
-import com.orange.proposta.novaproposta.enumerador.StatusFinanceiro;
+import com.orange.proposta.propostas.novaproposta.Proposta;
+import com.orange.proposta.propostas.novaproposta.enumerador.StatusFinanceiro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
