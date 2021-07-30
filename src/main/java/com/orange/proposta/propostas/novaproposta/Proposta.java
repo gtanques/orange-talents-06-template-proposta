@@ -15,7 +15,7 @@ import java.util.UUID;
 public class Proposta {
 
     @Id
-    private final String id = UUID.randomUUID().toString();
+    private final String id = UUID.randomUUID().toString().replace("-","");
 
     @Column(nullable = false)
     private String cpfCnpj;
