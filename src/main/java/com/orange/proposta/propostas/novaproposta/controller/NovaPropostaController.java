@@ -23,7 +23,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/propostas/novo")
+@RequestMapping("/propostas/")
 public class NovaPropostaController {
 
     private final PropostaRepository propostaRepository;
@@ -57,7 +57,7 @@ public class NovaPropostaController {
          */
         propostaRepository.save(proposta);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/acompanharproposta/{id}")
                 .buildAndExpand(proposta.getId())
                 .toUri();
 

@@ -27,7 +27,7 @@ public class AcompanharPropostaController {
     public ResponseEntity<?> acompanharProposta(@PathVariable Long id){
         Proposta existeProposta = propostaRepository
                 .findById(id)
-                .orElseThrow(() -> new ExceptionPersonalizada("id: " + id + " não encontrado", HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new ExceptionPersonalizada("Proposta: " + id + " não encontrado", HttpStatus.NOT_FOUND));
 
         AcompanharPropostaResponse response = new AcompanharPropostaResponse(existeProposta);
 
