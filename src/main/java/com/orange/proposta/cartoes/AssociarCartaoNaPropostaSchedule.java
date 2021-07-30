@@ -1,7 +1,6 @@
 package com.orange.proposta.cartoes;
 
 import com.orange.proposta.configuracoes.exceptions.ExceptionPersonalizada;
-import com.orange.proposta.configuracoes.loggers.Log;
 import com.orange.proposta.feign.associarcartoes.AssociarCartaoFeign;
 import com.orange.proposta.feign.associarcartoes.dto.CartaoResponse;
 import com.orange.proposta.propostas.novaproposta.Proposta;
@@ -28,7 +27,7 @@ public class AssociarCartaoNaPropostaSchedule {
 
     private final AssociarCartaoFeign associarCartaoFeign;
     private final PropostaRepository propostaRepository;
-    private final Logger logger = LoggerFactory.getLogger(Log.class);
+    private final Logger logger = LoggerFactory.getLogger(AssociarCartaoNaPropostaSchedule.class);
 
     @Autowired
     public AssociarCartaoNaPropostaSchedule(AssociarCartaoFeign associarCartaoFeign, PropostaRepository propostaRepository) {
@@ -53,7 +52,7 @@ public class AssociarCartaoNaPropostaSchedule {
             CartaoResponse cartaoResponse = associarCartaoFeign.associar(proposta.getId());
             proposta.adicionaCartaoNaProposta(cartaoResponse.getNumeroCartao());
             propostaRepository.save(proposta);
-            logger.info("Cartões vinculados!");
+            logger.info("Cartão vinculado!");
         } catch (FeignException e) {
             throw new ExceptionPersonalizada("Ocorreu um erro no serviço para vincular cartão", HttpStatus.SERVICE_UNAVAILABLE);
         }
