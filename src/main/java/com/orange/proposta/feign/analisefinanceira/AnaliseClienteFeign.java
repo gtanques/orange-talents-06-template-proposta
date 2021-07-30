@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 
-@FeignClient(name= "solicitacao-analise", url="http://localhost:9999/api/solicitacao")
+@FeignClient(name= "solicitacao-analise", url="${solicitar.analise.url}")
 public interface AnaliseClienteFeign {
 
     @PostMapping
