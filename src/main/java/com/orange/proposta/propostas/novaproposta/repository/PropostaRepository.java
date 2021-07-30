@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface PropostaRepository extends JpaRepository<Proposta, Long> {
+public interface PropostaRepository extends JpaRepository<Proposta, String> {
 
     Optional<Proposta> findByCpfCnpj(String cpfCnpj);
 

@@ -1,7 +1,7 @@
 package com.orange.proposta.propostas.acompanhapropostas;
 
-import com.orange.proposta.propostas.acompanhapropostas.dto.AcompanharPropostaResponse;
 import com.orange.proposta.configuracoes.exceptions.ExceptionPersonalizada;
+import com.orange.proposta.propostas.acompanhapropostas.dto.AcompanharPropostaResponse;
 import com.orange.proposta.propostas.novaproposta.Proposta;
 import com.orange.proposta.propostas.novaproposta.repository.PropostaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,10 @@ public class AcompanharPropostaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> acompanharProposta(@PathVariable Long id){
+    public ResponseEntity<?> acompanharProposta(@PathVariable String id){
         Proposta existeProposta = propostaRepository
                 .findById(id)
-                .orElseThrow(() -> new ExceptionPersonalizada("Proposta: " + id + " não encontrado", HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new ExceptionPersonalizada("Proposta: " + id + " não encontrada", HttpStatus.NOT_FOUND));
 
         AcompanharPropostaResponse response = new AcompanharPropostaResponse(existeProposta);
 

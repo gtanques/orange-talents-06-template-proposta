@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface AssociarCartaoFeign {
 
     @GetMapping
-    CartaoResponse associar(@RequestParam(name = "idProposta") Long id);
+    CartaoResponse associar(@RequestParam(name = "idProposta") String id);
 
 }

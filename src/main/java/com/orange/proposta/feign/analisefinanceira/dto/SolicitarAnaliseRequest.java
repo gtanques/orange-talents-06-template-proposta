@@ -24,7 +24,7 @@ public class SolicitarAnaliseRequest {
     public SolicitarAnaliseRequest(Proposta proposta) {
         this.documento = proposta.getCpfCnpj();
         this.nome = proposta.getNome();
-        this.idProposta = String.valueOf(proposta.getId());
+        this.idProposta = proposta.getId();
     }
 
     public String getDocumento() { return documento; }

@@ -8,14 +8,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_proposta")
 public class Proposta {
 
     @Id
-    @GeneratedValue
-    private Long id;
+    private final String id = UUID.randomUUID().toString();
 
     @Column(nullable = false)
     private String cpfCnpj;
@@ -53,7 +53,7 @@ public class Proposta {
         this.salario = salario;
     }
 
-    public Long getId() { return id; }
+    public String getId() { return id; }
 
     public String getCpfCnpj() { return cpfCnpj; }
 
