@@ -1,5 +1,6 @@
 package com.orange.proposta.propostas.novaproposta.controller;
 
+import com.orange.proposta.cartoes.AssociarCartaoNaPropostaSchedule;
 import com.orange.proposta.feign.analisefinanceira.AnaliseClienteFeign;
 import com.orange.proposta.feign.analisefinanceira.dto.SolicitarAnaliseRequest;
 import com.orange.proposta.feign.analisefinanceira.dto.SolicitarAnaliseResponse;
@@ -9,6 +10,8 @@ import com.orange.proposta.propostas.novaproposta.dto.NovaPropostaRequest;
 import com.orange.proposta.propostas.novaproposta.dto.NovaPropostaResponse;
 import com.orange.proposta.propostas.novaproposta.repository.PropostaRepository;
 import feign.FeignException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +31,7 @@ public class NovaPropostaController {
 
     private final PropostaRepository propostaRepository;
     private final AnaliseClienteFeign analiseClienteFeign;
+    private final Logger logger = LoggerFactory.getLogger(NovaPropostaController.class);
 
     @Autowired
     public NovaPropostaController(PropostaRepository propostaRepository, AnaliseClienteFeign analiseClienteFeign) {
@@ -49,6 +53,7 @@ public class NovaPropostaController {
         } catch (FeignException.UnprocessableEntity e) {
             proposta.AdicionaStatusFinanceiroNaProposta("COM_RESTRICAO");
         }catch (FeignException e){
+            logger.error(e.getMessage());
             throw new ExceptionPersonalizada("Serviço de análise indisponível", HttpStatus.SERVICE_UNAVAILABLE);
         }
 

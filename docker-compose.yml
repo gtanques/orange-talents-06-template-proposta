@@ -1,4 +1,4 @@
-version: '3.2'
+version: '3'
 services:
 
   mysql:
@@ -30,8 +30,8 @@ services:
       - contas
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://proposta-bd:3306/proposta?createDatabaseIfNotExist=true
-      - ANALISE_URL=http://analise:9999
-      - CONTAS_URL=http://contas:8888
+      - ANALISE_URL=http://analise:9999/api/solicitacao
+      - CONTAS_URL=http://contas:8888/api/cartoes
 
   zookeeper:
     image: "confluentinc/cp-zookeeper:5.2.1"
