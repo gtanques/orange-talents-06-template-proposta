@@ -12,7 +12,7 @@ public interface PropostaRepository extends JpaRepository<Proposta, String> {
 
     Optional<Proposta> findByCpfCnpj(String cpfCnpj);
 
-    @Query("select p from Proposta p where p.statusFinanceiro=:elegivel and p.numeroCartao=null")
+    @Query("select p from Proposta p where p.statusFinanceiro=:elegivel and p.cartao=null")
     List<Proposta> buscarPropostasParaVincularCartao(StatusFinanceiro elegivel);
 
 }

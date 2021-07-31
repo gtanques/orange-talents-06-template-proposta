@@ -1,5 +1,6 @@
 package com.orange.proposta.propostas.novaproposta;
 
+import com.orange.proposta.cartoes.Cartao;
 import com.orange.proposta.propostas.novaproposta.enumerador.StatusFinanceiro;
 
 import javax.persistence.*;
@@ -35,7 +36,8 @@ public class Proposta {
     @Enumerated(EnumType.STRING)
     private StatusFinanceiro statusFinanceiro;
 
-    private String numeroCartao;
+    @OneToOne
+    private Cartao cartao;
 
     @Deprecated
     private Proposta() {
@@ -57,13 +59,7 @@ public class Proposta {
 
     public String getCpfCnpj() { return cpfCnpj; }
 
-    public String getEmail() { return email; }
-
     public String getNome() { return nome; }
-
-    public String getEndereco() { return endereco; }
-
-    public BigDecimal getSalario() { return salario; }
 
     public StatusFinanceiro getStatusFinanceiro() { return statusFinanceiro; }
 
@@ -75,8 +71,8 @@ public class Proposta {
         }
     }
 
-    public void adicionaCartaoNaProposta(String numeroCartao){
-        this.numeroCartao = numeroCartao;
+    public void adicionaCartaoNaProposta(Cartao cartao){
+        this.cartao = cartao;
     }
 
 }

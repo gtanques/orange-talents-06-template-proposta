@@ -1,6 +1,5 @@
 package com.orange.proposta.propostas.novaproposta.controller;
 
-import com.orange.proposta.cartoes.AssociarCartaoNaPropostaSchedule;
 import com.orange.proposta.feign.analisefinanceira.AnaliseClienteFeign;
 import com.orange.proposta.feign.analisefinanceira.dto.SolicitarAnaliseRequest;
 import com.orange.proposta.feign.analisefinanceira.dto.SolicitarAnaliseResponse;
