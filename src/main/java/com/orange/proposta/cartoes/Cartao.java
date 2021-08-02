@@ -1,10 +1,11 @@
 package com.orange.proposta.cartoes;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.orange.proposta.biometrias.Biometria;
+
+import javax.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,6 +20,9 @@ public class Cartao {
 
     @Column(updatable = false)
     private final Instant dataCriacao = Instant.now();
+
+    @OneToMany(mappedBy = "cartao", fetch = FetchType.EAGER)
+    List<Biometria> biometrias = new ArrayList<>();
 
     public Cartao(String numeroCartao) {
         this.numeroCartao = numeroCartao;
