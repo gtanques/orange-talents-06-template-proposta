@@ -1,6 +1,7 @@
 package com.orange.proposta.cartoes;
 
 import com.orange.proposta.biometrias.Biometria;
+import com.orange.proposta.cartoes.bloqueio.enumeradores.StatusCartao;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -24,12 +25,26 @@ public class Cartao {
     @OneToMany(mappedBy = "cartao", fetch = FetchType.EAGER)
     List<Biometria> biometrias = new ArrayList<>();
 
+    @Enumerated(EnumType.STRING)
+    private StatusCartao statusCartao = StatusCartao.DESBLOQUEADO;
+
     public Cartao(String numeroCartao) {
         this.numeroCartao = numeroCartao;
     }
 
     @Deprecated
     private Cartao() {
+    }
+
+    public StatusCartao getStatusCartao() { return statusCartao; }
+
+    public boolean verificaSeStatusFoiAlterado(StatusCartao statusCartao){
+        if (statusCartao.equals(this.statusCartao)){
+            return false;
+        }
+
+        this.statusCartao = statusCartao;
+        return true;
     }
 
 }

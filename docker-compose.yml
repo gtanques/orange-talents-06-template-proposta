@@ -31,7 +31,7 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://proposta-bd:3306/proposta?createDatabaseIfNotExist=true
       - ANALISE_URL=http://analise:9999/api/solicitacao
-      - CONTAS_URL=http://contas:8888/api/cartoes
+      - CARTOES_URL=http://contas:8888/api/cartoes
       - KEYCLOAK_ISSUER_URI=http://keycloak:18080/auth/realms/master
       - KEYCLOAK_JWKS_URI=http://keycloak:18080/auth/realms/master/protocol/openid-connect/certs
 
