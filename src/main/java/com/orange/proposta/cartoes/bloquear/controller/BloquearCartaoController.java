@@ -2,7 +2,7 @@ package com.orange.proposta.cartoes.bloquear.controller;
 
 import com.orange.proposta.cartoes.Cartao;
 import com.orange.proposta.cartoes.bloquear.dto.BloquearCartaoRequest;
-import com.orange.proposta.cartoes.bloquear.dto.DetalheStatusCartaoDTO;
+import com.orange.proposta.cartoes.bloquear.dto.DetalheBloqueioCartaoDTO;
 import com.orange.proposta.cartoes.repository.CartaoRepository;
 import com.orange.proposta.configuracoes.exceptions.ExceptionPersonalizada;
 import com.orange.proposta.feign.bloquearcartao.BloquearCartaoFeign;
@@ -46,7 +46,7 @@ public class BloquearCartaoController {
     public ResponseEntity<?> bloquearCartao(@Valid @RequestBody BloquearCartaoRequest request,
                                             @PathVariable String numeroCartao, HttpServletRequest httpRequest) {
         Cartao cartao = request.toModel(cartaoRepository, numeroCartao);
-        DetalheStatusCartaoDTO informacaoDTO = new DetalheStatusCartaoDTO(cartao, httpRequest);
+        DetalheBloqueioCartaoDTO informacaoDTO = new DetalheBloqueioCartaoDTO(cartao, httpRequest);
 
         cartaoRepository.save(cartao);
         entityManager.persist(informacaoDTO.toModel());

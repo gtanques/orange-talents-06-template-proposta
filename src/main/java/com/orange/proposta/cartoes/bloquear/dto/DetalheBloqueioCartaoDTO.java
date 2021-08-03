@@ -7,7 +7,7 @@ import org.springframework.http.HttpHeaders;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
-public class DetalheStatusCartaoDTO {
+public class DetalheBloqueioCartaoDTO {
 
     @NotNull
     private Cartao cartao;
@@ -15,7 +15,7 @@ public class DetalheStatusCartaoDTO {
     @NotNull
     private HttpServletRequest request;
 
-    public DetalheStatusCartaoDTO(Cartao cartao, HttpServletRequest request) {
+    public DetalheBloqueioCartaoDTO(Cartao cartao, HttpServletRequest request) {
         this.cartao = cartao;
         this.request = request;
     }

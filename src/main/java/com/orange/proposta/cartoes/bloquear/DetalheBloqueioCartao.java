@@ -8,7 +8,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_detalhe_status_cartao")
+@Table(name = "tb_detalhe_bloqueio_cartao")
 public class DetalheBloqueioCartao {
 
     @Id
