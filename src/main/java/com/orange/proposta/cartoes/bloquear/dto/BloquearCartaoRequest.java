@@ -1,8 +1,8 @@
-package com.orange.proposta.cartoes.bloqueio.dto;
+package com.orange.proposta.cartoes.bloquear.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.orange.proposta.cartoes.Cartao;
-import com.orange.proposta.cartoes.bloqueio.enumeradores.StatusCartao;
+import com.orange.proposta.cartoes.bloquear.enumeradores.StatusCartao;
 import com.orange.proposta.cartoes.repository.CartaoRepository;
 import com.orange.proposta.configuracoes.exceptions.ExceptionPersonalizada;
 import org.springframework.http.HttpStatus;
@@ -11,14 +11,14 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
-public class AlterarStatusCartaoRequest {
+public class BloquearCartaoRequest {
 
     @NotNull
     @Enumerated(EnumType.STRING)
     private StatusCartao statusCartao;
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-    public AlterarStatusCartaoRequest(StatusCartao statusCartao) {
+    public BloquearCartaoRequest(StatusCartao statusCartao) {
         this.statusCartao = statusCartao;
     }
 

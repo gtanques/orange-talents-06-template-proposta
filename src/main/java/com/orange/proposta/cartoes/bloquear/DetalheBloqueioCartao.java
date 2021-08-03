@@ -1,7 +1,7 @@
-package com.orange.proposta.cartoes.bloqueio;
+package com.orange.proposta.cartoes.bloquear;
 
 import com.orange.proposta.cartoes.Cartao;
-import com.orange.proposta.cartoes.bloqueio.enumeradores.StatusCartao;
+import com.orange.proposta.cartoes.bloquear.enumeradores.StatusCartao;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_detalhe_status_cartao")
-public class DetalheStatusCartao {
+public class DetalheBloqueioCartao {
 
     @Id
     private final String id = UUID.randomUUID().toString().replace("-","");
@@ -30,7 +30,7 @@ public class DetalheStatusCartao {
     @Column(nullable = false)
     private String userAgent;
 
-    public DetalheStatusCartao(StatusCartao statusCartao, Cartao cartao, String ipCliente, String userAgent) {
+    public DetalheBloqueioCartao(StatusCartao statusCartao, Cartao cartao, String ipCliente, String userAgent) {
         this.statusCartao = statusCartao;
         this.cartao = cartao;
         this.ipCliente = ipCliente;
@@ -38,7 +38,7 @@ public class DetalheStatusCartao {
     }
 
     @Deprecated
-    public DetalheStatusCartao() {
+    public DetalheBloqueioCartao() {
     }
 
 }

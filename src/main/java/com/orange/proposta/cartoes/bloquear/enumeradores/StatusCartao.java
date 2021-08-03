@@ -1,4 +1,4 @@
-package com.orange.proposta.cartoes.bloqueio.enumeradores;
+package com.orange.proposta.cartoes.bloquear.enumeradores;
 
 public enum StatusCartao {
 

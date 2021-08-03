@@ -1,7 +1,7 @@
 package com.orange.proposta.cartoes;
 
 import com.orange.proposta.biometrias.Biometria;
-import com.orange.proposta.cartoes.bloqueio.enumeradores.StatusCartao;
+import com.orange.proposta.cartoes.bloquear.enumeradores.StatusCartao;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -37,6 +37,8 @@ public class Cartao {
     }
 
     public StatusCartao getStatusCartao() { return statusCartao; }
+
+    public String getNumeroCartao() { return numeroCartao; }
 
     public boolean verificaSeStatusFoiAlterado(StatusCartao statusCartao){
         if (statusCartao.equals(this.statusCartao)){

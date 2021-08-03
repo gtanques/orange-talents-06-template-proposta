@@ -1,7 +1,7 @@
-package com.orange.proposta.cartoes.bloqueio.dto;
+package com.orange.proposta.cartoes.bloquear.dto;
 
 import com.orange.proposta.cartoes.Cartao;
-import com.orange.proposta.cartoes.bloqueio.DetalheStatusCartao;
+import com.orange.proposta.cartoes.bloquear.DetalheBloqueioCartao;
 import org.springframework.http.HttpHeaders;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +20,8 @@ public class DetalheStatusCartaoDTO {
         this.request = request;
     }
 
-    public DetalheStatusCartao toModel(){
-        return new DetalheStatusCartao(
+    public DetalheBloqueioCartao toModel(){
+        return new DetalheBloqueioCartao(
                 cartao.getStatusCartao(),
                 cartao,
                 request.getRemoteAddr(),
