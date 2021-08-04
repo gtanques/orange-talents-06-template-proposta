@@ -16,6 +16,7 @@ public class ConfiguracoesDeSeguranca extends WebSecurityConfigurerAdapter {
         http.authorizeRequests(authorizeRequests -> authorizeRequests
                 .antMatchers(HttpMethod.POST, "/propostas/").hasAuthority("SCOPE_proposta:write")
                 .antMatchers(HttpMethod.GET, "/actuator/**").hasAuthority("SCOPE_proposta:read")
+                .antMatchers(HttpMethod.GET, "/actuator/prometheus").hasAuthority("SCOPE_proposta:read")
                 .anyRequest().authenticated()
         ).sessionManagement().sessionCreationPolicy(STATELESS)
                 .and()
