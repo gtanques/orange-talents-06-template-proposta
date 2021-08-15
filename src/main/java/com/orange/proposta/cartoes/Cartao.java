@@ -1,5 +1,6 @@
 package com.orange.proposta.cartoes;
 
+import com.orange.proposta.avisosviagem.AvisoViagem;
 import com.orange.proposta.biometrias.Biometria;
 
 import javax.persistence.*;
@@ -23,6 +24,9 @@ public class Cartao {
 
     @OneToMany(mappedBy = "cartao", fetch = FetchType.EAGER)
     List<Biometria> biometrias = new ArrayList<>();
+
+    @OneToMany(mappedBy = "cartao", fetch = FetchType.LAZY)
+    List<AvisoViagem> avisosViagem = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private StatusCartaoEnum statusCartaoEnum = StatusCartaoEnum.DESBLOQUEADO;

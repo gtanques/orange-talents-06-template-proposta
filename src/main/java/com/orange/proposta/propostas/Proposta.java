@@ -33,7 +33,7 @@ public class Proposta {
     private BigDecimal salario;
 
     @Enumerated(EnumType.STRING)
-    private StatusFinanceiroEnum statusFinanceiroEnum;
+    private StatusFinanceiroEnum statusFinanceiro;
 
     @OneToOne
     private Cartao cartao;
@@ -60,13 +60,13 @@ public class Proposta {
 
     public String getNome() { return nome; }
 
-    public StatusFinanceiroEnum getStatusFinanceiro() { return statusFinanceiroEnum; }
+    public StatusFinanceiroEnum getStatusFinanceiro() { return statusFinanceiro; }
 
     public void AdicionaStatusFinanceiroNaProposta(String status){
         if(status.equals("COM_RESTRICAO")){
-            this.statusFinanceiroEnum = StatusFinanceiroEnum.NAO_ELEGIVEL;
+            this.statusFinanceiro = StatusFinanceiroEnum.NAO_ELEGIVEL;
         }else{
-            this.statusFinanceiroEnum = StatusFinanceiroEnum.ELEGIVEL;
+            this.statusFinanceiro = StatusFinanceiroEnum.ELEGIVEL;
         }
     }
 
