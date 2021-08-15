@@ -32,12 +32,13 @@ public class AssociarCartaoNaPropostaSchedule {
     private final Logger logger = LoggerFactory.getLogger(AssociarCartaoNaPropostaSchedule.class);
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Autowired
-    public AssociarCartaoNaPropostaSchedule(AssociarCartaoFeign associarCartaoFeign, PropostaRepository propostaRepository) {
+    public AssociarCartaoNaPropostaSchedule(AssociarCartaoFeign associarCartaoFeign, PropostaRepository propostaRepository, EntityManager entityManager) {
         this.associarCartaoFeign = associarCartaoFeign;
         this.propostaRepository = propostaRepository;
+        this.entityManager = entityManager;
     }
 
     @Scheduled(fixedRate = 60000)
