@@ -23,7 +23,7 @@ public class AvisoViagem {
     private String destino;
 
     @Column(nullable = false)
-    private LocalDate dataTermino;
+    private LocalDate validoAte;
 
     @Column(nullable = false)
     private String ipRequest;
@@ -42,12 +42,12 @@ public class AvisoViagem {
     }
 
     public AvisoViagem(@NotBlank @NotNull String destino,
-                       @Future @NotNull LocalDate dataTermino,
+                       @Future @NotNull LocalDate validoAte,
                        @NotEmpty String ipRequest,
                        @NotEmpty String userAgent,
                        @NotNull Cartao cartao) {
         this.destino = destino;
-        this.dataTermino = dataTermino;
+        this.validoAte = validoAte;
         this.ipRequest = ipRequest;
         this.userAgent = userAgent;
         this.cartao = cartao;

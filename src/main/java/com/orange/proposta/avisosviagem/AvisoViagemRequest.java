@@ -22,13 +22,13 @@ public class AvisoViagemRequest {
 
     @Future
     @NotNull
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private final LocalDate dataTermino;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private final LocalDate validoAte;
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-    public AvisoViagemRequest(String destino, LocalDate dataTermino) {
+    public AvisoViagemRequest(String destino, LocalDate validoAte) {
         this.destino = destino;
-        this.dataTermino = dataTermino;
+        this.validoAte = validoAte;
     }
 
     public AvisoViagem toModel(HttpServletRequest httpRequest, CartaoRepository cartaoRepository, String numeroCartao){
@@ -36,7 +36,7 @@ public class AvisoViagemRequest {
                 .orElseThrow(() -> new ExceptionPersonalizada("Cartão não encontrado.", HttpStatus.NOT_FOUND));
         return new AvisoViagem(
                 this.destino,
-                this.dataTermino,
+                this.validoAte,
                 httpRequest.getRemoteAddr(),
                 httpRequest.getHeader(HttpHeaders.USER_AGENT),
                 cartao);
