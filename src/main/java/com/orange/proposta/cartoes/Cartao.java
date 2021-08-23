@@ -2,6 +2,7 @@ package com.orange.proposta.cartoes;
 
 import com.orange.proposta.avisosviagem.AvisoViagem;
 import com.orange.proposta.biometrias.Biometria;
+import com.orange.proposta.carteiras.Carteira;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -27,6 +28,9 @@ public class Cartao {
 
     @OneToMany(mappedBy = "cartao", fetch = FetchType.LAZY)
     List<AvisoViagem> avisosViagem = new ArrayList<>();
+
+    @OneToMany(mappedBy = "cartao", fetch = FetchType.LAZY)
+    List<Carteira> carteiras = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private StatusCartaoEnum statusCartaoEnum = StatusCartaoEnum.DESBLOQUEADO;
