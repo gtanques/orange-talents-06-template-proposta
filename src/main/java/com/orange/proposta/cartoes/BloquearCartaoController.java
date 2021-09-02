@@ -3,6 +3,7 @@ package com.orange.proposta.cartoes;
 import com.orange.proposta.configuracoes.ExceptionPersonalizada;
 import com.orange.proposta.feign.BloquearCartaoFeign;
 import feign.FeignException;
+import io.opentracing.Tracer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,23 +25,27 @@ public class BloquearCartaoController {
     private final CartaoRepository cartaoRepository;
     private final BloquearCartaoFeign bloquearCartaoFeign;
     private final Logger logger = LoggerFactory.getLogger(BloquearCartaoController.class);
+    private final Tracer tracer;
 
     @PersistenceContext
     private final EntityManager entityManager;
 
 
     @Autowired
-    public BloquearCartaoController(CartaoRepository repository, EntityManager entityManager, BloquearCartaoFeign bloquearCartaoFeign) {
+    public BloquearCartaoController(CartaoRepository repository, EntityManager entityManager, BloquearCartaoFeign bloquearCartaoFeign, Tracer tracer) {
         this.cartaoRepository = repository;
         this.entityManager = entityManager;
         this.bloquearCartaoFeign = bloquearCartaoFeign;
 
+        this.tracer = tracer;
     }
 
     @PutMapping("/{numeroCartao}")
     @Transactional
     public ResponseEntity<?> bloquearCartao(@Valid @RequestBody BloquearCartaoRequest request,
-                                            @PathVariable String numeroCartao, HttpServletRequest httpRequest) {
+                                            @PathVariable String numeroCartao,
+                                            HttpServletRequest httpRequest) {
+        tracer.activeSpan();
         Cartao cartao = request.toModel(cartaoRepository, numeroCartao);
         DetalheBloqueioCartaoResponse informacaoDTO = new DetalheBloqueioCartaoResponse(cartao, httpRequest);
 
@@ -50,7 +55,7 @@ public class BloquearCartaoController {
         try {
             bloquearCartaoFeign.notificarSistemaLegado(Map.of("sistemaResponsavel", "Proposta-API"), numeroCartao);
             logger.info("Cartão bloqueado!");
-        }catch (FeignException e){
+        } catch (FeignException e) {
             logger.error(e.getMessage());
             throw new ExceptionPersonalizada("Ocorreu um erro no serviço de bloqueio.", HttpStatus.UNPROCESSABLE_ENTITY);
         }

@@ -4,6 +4,7 @@ import com.orange.proposta.cartoes.CartaoRepository;
 import com.orange.proposta.configuracoes.ExceptionPersonalizada;
 import com.orange.proposta.feign.AssociarCarteiraFeign;
 import feign.FeignException;
+import io.opentracing.Tracer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +25,20 @@ public class AssociarCarteiraController {
     private final AssociarCarteiraFeign associarCarteiraFeign;
     private final Logger logger = LoggerFactory.getLogger(AssociarCarteiraController.class);
     private final CarteiraRepository carteiraRepository;
+    private final Tracer tracer;
 
     @Autowired
-    public AssociarCarteiraController(CartaoRepository cartaoRepository, AssociarCarteiraFeign associarCarteiraFeign, CarteiraRepository carteiraRepository) {
+    public AssociarCarteiraController(CartaoRepository cartaoRepository, AssociarCarteiraFeign associarCarteiraFeign, CarteiraRepository carteiraRepository, Tracer tracer) {
         this.cartaoRepository = cartaoRepository;
         this.associarCarteiraFeign = associarCarteiraFeign;
         this.carteiraRepository = carteiraRepository;
+        this.tracer = tracer;
     }
 
     @PostMapping("/{numeroCartao}")
     @Transactional
     public ResponseEntity<?> adicionarCarteira(@RequestBody @Valid AssociarCarteiraRequest request, @PathVariable String numeroCartao) {
+        tracer.activeSpan();
         Carteira carteira = request.paraCarteira(numeroCartao, cartaoRepository, carteiraRepository);
         try {
             AssociarCarteiraResponse response = associarCarteiraFeign

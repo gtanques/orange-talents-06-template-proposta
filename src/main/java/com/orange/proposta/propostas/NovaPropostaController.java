@@ -5,6 +5,7 @@ import com.orange.proposta.feign.SolicitarAnaliseFeign;
 import com.orange.proposta.feign.SolicitarAnaliseRequest;
 import com.orange.proposta.feign.SolicitarAnaliseResponse;
 import feign.FeignException;
+import io.opentracing.Tracer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +28,19 @@ public class NovaPropostaController {
     private final PropostaRepository propostaRepository;
     private final SolicitarAnaliseFeign solicitarAnaliseFeign;
     private final Logger logger = LoggerFactory.getLogger(NovaPropostaController.class);
+    private final Tracer tracer;
 
     @Autowired
-    public NovaPropostaController(PropostaRepository propostaRepository, SolicitarAnaliseFeign solicitarAnaliseFeign) {
+    public NovaPropostaController(PropostaRepository propostaRepository, SolicitarAnaliseFeign solicitarAnaliseFeign, Tracer tracer) {
         this.propostaRepository = propostaRepository;
         this.solicitarAnaliseFeign = solicitarAnaliseFeign;
+        this.tracer = tracer;
     }
 
     @PostMapping
     @Transactional
     public ResponseEntity<?> criar(@RequestBody @Valid NovaPropostaRequest request) {
+        tracer.activeSpan();
 
         Proposta proposta = request.toModel(propostaRepository);
         propostaRepository.save(proposta);

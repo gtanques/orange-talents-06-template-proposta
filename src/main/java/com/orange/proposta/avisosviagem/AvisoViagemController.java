@@ -4,6 +4,7 @@ import com.orange.proposta.cartoes.CartaoRepository;
 import com.orange.proposta.configuracoes.ExceptionPersonalizada;
 import com.orange.proposta.feign.AvisoViagemFeign;
 import feign.FeignException;
+import io.opentracing.Tracer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,19 +26,26 @@ public class AvisoViagemController {
     private final EntityManager entityManager;
     private final CartaoRepository cartaoRepository;
     private final AvisoViagemFeign avisoViagemFeign;
-    private Logger logger = LoggerFactory.getLogger(AvisoViagemController.class);
+    private final Logger logger = LoggerFactory.getLogger(AvisoViagemController.class);
+    private final Tracer tracer;
 
     @Autowired
-    public AvisoViagemController(EntityManager entityManager, CartaoRepository cartaoRepository, AvisoViagemFeign avisoViagemFeign) {
+    public AvisoViagemController(EntityManager entityManager,
+                                 CartaoRepository cartaoRepository,
+                                 AvisoViagemFeign avisoViagemFeign,
+                                 Tracer tracer) {
         this.entityManager = entityManager;
         this.cartaoRepository = cartaoRepository;
         this.avisoViagemFeign = avisoViagemFeign;
+        this.tracer = tracer;
     }
 
     @PostMapping("/{numeroCartao}")
     @Transactional
     public ResponseEntity<?> avisarViagem(@Valid @RequestBody AvisoViagemRequest request,
-                                          @PathVariable String numeroCartao, HttpServletRequest httpRequest) {
+                                          @PathVariable String numeroCartao,
+                                          HttpServletRequest httpRequest) {
+        tracer.activeSpan();
         AvisoViagem avisoViagem = request.toModel(httpRequest, cartaoRepository, numeroCartao);
 
         try {
